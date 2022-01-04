@@ -55,15 +55,16 @@ function playRound(playerSelection, computerSelection){
 }
 
 // placing computer and player choice into a variable
-let playerSelection = playerPlay()
-let computerSelection = computerPlay()
+let playerSelection;
+let computerSelection;
 
 // game()
 function game(){
     for(let i=0;i<5; i++){
-        playRound(playerSelection, computerSelection);
         playerSelection = playerPlay()
         computerSelection = computerPlay()
+        playRound(playerSelection, computerSelection);
+
     }
 }
 game();
