@@ -9,62 +9,79 @@ function computerPlay(){
     }else return "scissors"
 }
 
-//asks user to input rock, paper, or scissors converts it to lowercase if it is not, and returns it
-function playerPlay(){
-    let userChoice = prompt("Pick rock, paper, or scissors.");
-    let choice = userChoice.toLowerCase();
-    return choice
-}
+document.getElementById("rock").addEventListener("click", () => {
+  playRound("rock", computerPlay())
+})
+
+document.getElementById("paper").addEventListener("click", () => {
+    playRound("paper", computerPlay())
+})
+
+scissors.addEventListener('click', () => {
+    playRound("scissors", computerPlay())
+})
 
 let playerWins = 0;
 let computerWins = 0;
 
 function playRound(playerSelection, computerSelection){
   console.log({player: playerSelection, cpu: computerSelection})
-    if(playerSelection===computerSelection){
-        console.log("its a tie!")
-    }else if(playerSelection==="rock"){
-        if(computerSelection==="paper"){
-            console.log("you lose! paper beats rock")
-            computerWins++
-        }
-        else{
-            console.log("you win! rock beats scissors")
-            playerWins++
-        }
-    }else if(playerSelection==="scissors"){
-        if(computerSelection==="rock"){
-            console.log("you lose! rock beats scissors")
-            computerWins++
-        }
-        else{
-            console.log("you win! scissors beats paper")
-            playerWins++
-        }
-    }else if(playerSelection==="paper"){
-            if(computerSelection==="scissors"){
-                console.log("you lose! scissors beats paper")
+  if(playerWins == 5){
+      console.log("you already beat the computer!")
+  }else if(computerWins == 5){
+      console.log("LLLLL")
+  }else{
+        if(playerSelection===computerSelection){
+            document.getElementById("round-result").textContent = "It's a tie!"
+        }else if(playerSelection==="rock"){
+            if(computerSelection==="paper"){
+                document.getElementById("round-result").textContent = "You lose! Paper beats Rock"
                 computerWins++
             }
             else{
-                console.log("you win! paper beats rock")
+                document.getElementById("round-result").textContent = "You win! Rock beats Scissors"
                 playerWins++
             }
-     }
+        }else if(playerSelection==="scissors"){
+            if(computerSelection==="rock"){
+                document.getElementById("round-result").textContent = "You lose! Rock beats Scissors"
+                computerWins++
+            }
+            else{
+                document.getElementById("round-result").textContent = "You win! Scissors beats Paper"
+                playerWins++
+            }
+        }else if(playerSelection==="paper"){
+                if(computerSelection==="scissors"){
+                    document.getElementById("round-result").textContent = "You lose! Scissors beats Paper"
+                    computerWins++
+                }
+                else{
+                    document.getElementById("round-result").textContent = "You win! Paper beats Rock"
+                    playerWins++
+                }
+            }
+  
+        if(playerWins == 5){
+            document.getElementById("final-result").textContent = "You beat the computer!"
+        }else if(computerWins == 5){
+            document.getElementById("final-result").textContent = "Computer wins!!!"
+        }
+  }
+    document.getElementById("player-result").textContent = `Player: ${playerWins}`
+    document.getElementById("computer-result").textContent = `Computer: ${computerWins}`
         console.log({player: playerWins, computer: computerWins})
 }
 
 // placing computer and player choice into a variable
-let playerSelection;
-let computerSelection;
 
-// game()
-function game(){
-    for(let i=0;i<5; i++){
-        playerSelection = playerPlay()
-        computerSelection = computerPlay()
-        playRound(playerSelection, computerSelection);
 
-    }
-}
-game();
+// function game(){
+//     for(let i=0;i<5; i++){
+//         playerSelection = playerPlay()
+//         computerSelection = computerPlay()
+//         playRound(playerSelection, computerSelection);
+//     }
+// }
+// game();
+
